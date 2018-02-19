@@ -30,6 +30,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="config\database.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="models\account.js" />
     <Compile Include="routes\index.js" />
     <Compile Include="routes\users.js" />
@@ -48,6 +51,7 @@
   <ItemGroup>
     <Folder Include="bin\" />
     <Folder Include="models\" />
+    <Folder Include="config\" />
     <Folder Include="public\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />

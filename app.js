@@ -55,8 +55,19 @@ passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
+var configDB = require("./config/database");
+
 // mongoose
-mongoose.connect('mongodb://localhost:27017/passport_local_mongoose_express4');
+const options = {
+    useMongoClient: true,
+    autoIndex: false, // Don't build indexes
+    reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
+    reconnectInterval: 500, // Reconnect every 500ms
+    poolSize: 10, // Maintain up to 10 socket connections
+    // If not connected, return errors immediately rather than waiting for reconnect
+    bufferMaxEntries: 0
+};
+mongoose.connect(configDB.url, options);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
