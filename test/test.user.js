@@ -5,7 +5,7 @@ const Account = require("../models/account.js");
 describe('Account', () => {
 
     before((done) => {
-        const db = mongoose.connect('mongodb://localhost/test');
+        const db = mongoose.connect('mongodb://localhost"27017/test');
         done();
     });
 

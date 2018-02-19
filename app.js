@@ -1,4 +1,12 @@
+// always
+"use strict";
+
+// Optional. You will see this name in eg. 'ps' or 'top' command
+process.title = "node-secure";
+
+
 // dependencies
+var http = require("http"); // for an http server
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -13,11 +21,14 @@ var flash = require('connect-flash');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+// Global variables
+var portN = process.env.PORT || 1337;    // portN for node
+
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -45,7 +56,7 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 // mongoose
-mongoose.connect('mongodb://localhost/passport_local_mongoose_express4');
+mongoose.connect('mongodb://localhost:27017/passport_local_mongoose_express4');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -77,6 +88,7 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
 
 
 module.exports = app;
